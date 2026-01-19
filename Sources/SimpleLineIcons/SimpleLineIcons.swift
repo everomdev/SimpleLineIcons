@@ -3,28 +3,30 @@
 import SwiftUI
 
 public struct SimpleLineIconSView: View {
-    private let icon: SimpleLineIcon
+    private let icon: SimpleLineIcon?
     private let size: CGFloat
     private let fontName: String
-
+    
     public init(_ icon: SimpleLineIcon, size: CGFloat = 20, fontName: String = "Simple-Line-Icons") {
         self.icon = icon
         self.size = size
         self.fontName = fontName
     }
-
+    
     public init(_ icon: String, size: CGFloat = 20, fontName: String = "Simple-Line-Icons") {
         if let iconEnum = SimpleLineIcon(name: icon) {
             self.icon = iconEnum
-        } else {
-            self.icon = .simple_icon_info
+        }else{
+            self.icon = nil
         }
         self.size = size
         self.fontName = fontName
     }
-
+    
     public var body: some View {
-        Text(icon.unicodeScalar)
-            .font(.custom(fontName, size: size))
+        if let icon = icon {
+            Text(icon.unicodeScalar)
+                .font(.custom(fontName, size: size))
+        }
     }
 }
