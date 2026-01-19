@@ -14,17 +14,17 @@ public struct SimpleLineIconSView: View {
   }
     
     public init(_ icon: String, size: CGFloat = 20, fontName: String = "Simple-Line-Icons") {
-        guard let iconEnum = SimpleLineIcon(rawValue: icon) else {
-            fatalError("No matching case for \(icon)")
-        }
-        self.icon = iconEnum
-        self.size = size
-        self.fontName = fontName
+      guard let iconEnum = SimpleLineIcon(name: icon) else {
+        fatalError("No matching case for \(icon)")
+      }
+      self.icon = iconEnum
+      self.size = size
+      self.fontName = fontName
     }
 
   public var body: some View {
-    Text(icon.rawValue)
-      .font(.custom(fontName, size: size))
+      Text(icon.unicodeScalar)
+          .font(.custom(fontName, size: size))
   }
     
     
